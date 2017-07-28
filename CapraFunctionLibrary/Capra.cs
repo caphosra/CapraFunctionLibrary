@@ -2,6 +2,12 @@
 
 namespace Cpr314Lib
 {
+    public enum Rotation
+    {
+        RightRotation,
+        LeftRotation
+    }
+
 #if !SYSTEM
 
     public static class CprSystem
