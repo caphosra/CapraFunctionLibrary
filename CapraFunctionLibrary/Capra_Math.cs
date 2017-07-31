@@ -51,9 +51,7 @@ namespace Cpr314Lib
         /// <param name="seed">Seed値</param>
         /// <returns>値</returns>
         public static double perlin_noise_3D(CprPoint key, int seed)
-        {
-            return frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D, 49.038D)) + seed) * 43758.5433D);
-        }
+            => frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D, 49.038D)) + seed) * 43758.5433D);
 
         /// <summary>
         /// 実装したはいいものの、性能は...
@@ -62,9 +60,7 @@ namespace Cpr314Lib
         /// <param name="seed">Seed値</param>
         /// <returns>値</returns>
         public static double perlin_noise_2D(CprPoint key, int seed)
-        {
-            return frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D)) + seed) * 43758.5453123D);
-        }
+            => frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D)) + seed) * 43758.5453123D);
 
         /// <summary>
         /// ベクトルの内積を求めます
@@ -73,9 +69,7 @@ namespace Cpr314Lib
         /// <param name="b">ベクトル的な</param>
         /// <returns></returns>
         public static double dot(CprPoint a, CprPoint b)
-        {
-            return a.x * b.x + a.y * b.y + a.z * b.z;
-        }
+            => a.x * b.x + a.y * b.y + a.z * b.z;
 
         /// <summary>
         /// まるめ

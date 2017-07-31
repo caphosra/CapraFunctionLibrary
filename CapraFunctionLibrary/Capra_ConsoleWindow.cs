@@ -23,7 +23,7 @@ namespace Cpr314Lib
 
             /// <summary>
             /// 仕事をさせながら、画面を変更し続けます。
-            /// (注)途中でConsole画面に書き込みをしないでください。この関数をawaitしないでください。
+            /// (注)途中でConsole画面に書き込みをしないでください。また、この関数はWait()を使用しています。
             /// </summary>
             public static void Wait(Action a, int interval = 100, Rotation r = Rotation.RightRotation)
             {

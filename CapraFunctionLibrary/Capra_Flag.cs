@@ -18,29 +18,29 @@ namespace Cpr314Lib
 
         public CprFlag(bool b)
         {
-            myflag = b;
+            Value = b;
         }
 
         public CprFlag(int i)
         {
-            if (i == 0) myflag = false;
-            else if (i == 1) myflag = true;
+            if (i == 0) Value = false;
+            else if (i == 1) Value = true;
             else throw new ArgumentException("\"i\" neither zero nor one.");
         }
 
         public void Change()
-            => myflag = !myflag;
+            => Value = !Value;
 
         public bool ON()
         {
-            if (myflag) return false;
-            return myflag = true;
+            if (Value) return false;
+            return Value = true;
         }
 
         public bool OFF()
         {
-            if (!myflag) return false;
-            myflag = false;
+            if (!Value) return false;
+            Value = false;
             return true;
         }
 
@@ -67,19 +67,25 @@ namespace Cpr314Lib
     {
         public CprTrueFlag(bool b) : base(b)
         {
-            myflag = b;
+            Value = b;
         }
 
         public CprTrueFlag(int i) : base(i)
         {
-            if (i == 0) myflag = false;
-            else if (i == 1) myflag = true;
+            if (i == 0) Value = false;
+            else if (i == 1) Value = true;
             else throw new System.ArgumentException("\"i\" neither zero nor one.");
         }
 
         public new void Change()
         {
-            if (!myflag) myflag = true;
+            Value = !Value;
+        }
+
+        public new bool ON()
+        {
+            if (!Value) return Value = true;
+            else return false;
         }
 
         public new bool OFF()
@@ -112,29 +118,29 @@ namespace Cpr314Lib
 
         public CprFlagE(bool b)
         {
-            myflag = b;
+            Value = b;
         }
 
         public CprFlagE(int i)
         {
-            if (i == 0) myflag = false;
-            else if (i == 1) myflag = true;
+            if (i == 0) Value = false;
+            else if (i == 1) Value = true;
             else throw new System.ArgumentException("\"i\" neither zero nor one.");
         }
 
         public void Change()
-           => myflag = !myflag;
+           => Value = !Value;
 
         public bool ON()
         {
-            if (myflag) return false;
-            return myflag = true;
+            if (Value) return false;
+            return Value = true;
         }
 
         public bool OFF()
         {
-            if (!myflag) return false;
-            myflag = false;
+            if (!Value) return false;
+            Value = false;
             return true;
         }
 

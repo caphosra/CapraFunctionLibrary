@@ -25,7 +25,7 @@ namespace Cpr314Lib
             /// <returns>True or False</returns>
             public bool Add(string name, T item)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                     if (m.Name == name) return false;
                 Items.Add(new MuseumItem<T>(name, item));
                 return true;
@@ -38,7 +38,7 @@ namespace Cpr314Lib
             /// <returns>True or False</returns>
             public bool Add(MuseumItem<T> item)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                     if (m.Name == item.Name) return false;
                 Items.Add(item);
                 return true;
@@ -51,7 +51,7 @@ namespace Cpr314Lib
             /// <param name="item">Item</param>
             public void Override(string name, T item)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                     if (m.Name == name) Items.Remove(m);
                 Items.Add(new MuseumItem<T>(name, item));
             }
@@ -62,7 +62,7 @@ namespace Cpr314Lib
             /// <param name="item">Item</param>
             public void Override(MuseumItem<T> item)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                     if (m.Name == item.Name) Items.Remove(m);
                 Items.Add(item);
             }
@@ -74,7 +74,7 @@ namespace Cpr314Lib
             /// <returns>Item</returns>
             public T Search(string name)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                 {
                     if (m.Name == name) return m.Item;
                 }
@@ -88,7 +88,7 @@ namespace Cpr314Lib
             /// <returns>True or False</returns>
             public bool Exist(string name)
             {
-                foreach (MuseumItem<T> m in Items)
+                foreach (var m in Items)
                 {
                     if (m.Name == name) return true;
                 }
@@ -140,7 +140,7 @@ namespace Cpr314Lib
             {
                 get
                 {
-                    foreach (MuseumItem<T> m in Items)
+                    foreach (var m in Items)
                     {
                         if (m.Name == name) return m.Item;
                     }
@@ -149,7 +149,7 @@ namespace Cpr314Lib
 
                 set
                 {
-                    foreach (MuseumItem<T> m in Items)
+                    foreach (var m in Items)
                     {
                         if (m.Name == name)
                         {

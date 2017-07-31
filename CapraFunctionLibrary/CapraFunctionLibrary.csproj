@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Capra.cs" />
     <Compile Include="Capra_ConsoleWindow.cs" />
+    <Compile Include="Capra_Event.cs" />
     <Compile Include="Capra_Math.cs" />
     <Compile Include="Capra_Museum.cs" />
     <Compile Include="Capra_Test.cs" />
