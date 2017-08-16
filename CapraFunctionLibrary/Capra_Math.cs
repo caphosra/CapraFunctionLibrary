@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cpr314Lib
 {
+
 #if !MATH
 
     public static class CprMath
@@ -76,7 +77,9 @@ namespace Cpr314Lib
         /// </summary>
         static Func<double, double> frac = (value) => (value - Math.Floor(value));
     }
+
 #endif
 
 #endif
+
 }

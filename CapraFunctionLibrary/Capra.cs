@@ -38,6 +38,26 @@ namespace Cpr314Lib
         {
             if (!arg) throw e;
         }
+
+        /// <summary>
+        /// インスタンスを詳細コピーします。
+        /// </summary>
+        /// <typeparam name="T">クラスの種類</typeparam>
+        /// <param name="t">インスタンス</param>
+        /// <returns></returns>
+        public static object PassByValue<T>(T t)
+        {
+            object clone = null;
+            using (var stream = new System.IO.MemoryStream())
+            {
+                System.Xml.Serialization.XmlSerializer serializer =
+                    new System.Xml.Serialization.XmlSerializer(typeof(T));
+                serializer.Serialize(stream, t);
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                clone = serializer.Deserialize(stream);
+            }
+            return clone;
+        }
     }
 
 #endif
@@ -79,7 +99,6 @@ namespace Cpr314Lib
             this.x = x;
             this.y = y;
         }
-
         public CprPoint(double x = 0, double y = 0, double z = 0)
         {
             this.x = x;
@@ -89,7 +108,6 @@ namespace Cpr314Lib
 
         public new string ToString()
             => "X : " + x.ToString() + " / Y : " + y.ToString() + " / Z : " + z.ToString();
-
         public string ToString(byte dimensions)
         {
             switch (dimensions)
@@ -106,7 +124,6 @@ namespace Cpr314Lib
                     throw new ArgumentException();
             }
         }
-
         public string ToString(byte dimensions, bool exception)
         {
             if (exception) return ToString(dimensions);

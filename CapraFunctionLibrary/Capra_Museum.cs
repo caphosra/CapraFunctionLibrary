@@ -185,6 +185,9 @@ namespace Cpr314Lib
                 Name = name;
                 Item = item;
             }
+
+            public static implicit operator T(MuseumItem<T> museumitem)
+                => museumitem.Item;
         }
     }
 }
