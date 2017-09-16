@@ -8,6 +8,8 @@ namespace Cpr314Lib
         LeftRotation
     }
 
+    public delegate T CmdFunc<T>(string[] str);
+
 #if !SYSTEM
 
     public static class CprSystem
@@ -88,16 +90,17 @@ namespace Cpr314Lib
 
 #if !POINT
 
-    public class CprPoint
+    public struct CprPoint
     {
-        public double x = 0;
-        public double y = 0;
-        public double z = 0;
+        public double x;
+        public double y;
+        public double z;
 
         public CprPoint(double x = 0, double y = 0)
         {
             this.x = x;
             this.y = y;
+            this.z = 0D;
         }
         public CprPoint(double x = 0, double y = 0, double z = 0)
         {

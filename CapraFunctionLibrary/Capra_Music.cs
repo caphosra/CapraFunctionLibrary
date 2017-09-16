@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 
 namespace Cpr314Lib
 {
+    public enum SoundNames
+    {
+        Do = 262,
+        Re = 294,
+        Mi = 330,
+        Fa = 349,
+        Sol = 392,
+        La = 440,
+        Si = 494
+    }
+
     public static class CprMusic
     {
         private static bool canbeep = true;
@@ -16,17 +27,6 @@ namespace Cpr314Lib
             {
                 return canbeep;
             }
-        }
-
-        public enum SoundNames
-        {
-            Do = 262,
-            Re = 294,
-            Mi = 330,
-            Fa = 349,
-            Sol = 392,
-            La = 440,
-            Si = 494
         }
 
         public static void Beep(int frequency, int duration)

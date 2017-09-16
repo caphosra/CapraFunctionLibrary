@@ -5,7 +5,7 @@ using System;
 namespace Cpr314Lib
 {
     /// <summary>
-    /// CprFlagのInterfaceです。ここを元に作っています。
+    /// CprFlagのInterfaceです。
     /// </summary>
     public interface ICprFlag
     {
@@ -16,7 +16,7 @@ namespace Cpr314Lib
     }
 
     /// <summary>
-    /// boolの拡張機能といったところでしょうか。
+    /// boolの拡張です。
     /// </summary>
     public class CprFlag : ICprFlag
     {
@@ -161,6 +161,89 @@ namespace Cpr314Lib
             => f.Value;
         public static explicit operator CprFlagE(bool b)
             => new CprFlagE(b);
+    }
+
+    /// <summary>
+    /// CprFlagのstructバージョンです。
+    /// </summary>
+    public struct CprFlagS
+    {
+        private bool myflag;
+
+        public CprFlagS(bool b)
+        {
+            myflag = b;
+        }
+        public CprFlagS(int i)
+        {
+            if (i == 0) myflag = false;
+            else if (i == 1) myflag = true;
+            else throw new ArgumentException("\"i\" neither zero nor one.");
+        }
+
+        public void Change()
+            => Value = !Value;
+        public bool ON()
+        {
+            if (Value) return false;
+            return Value = true;
+        }
+        public bool OFF()
+        {
+            if (!Value) return false;
+            Value = false;
+            return true;
+        }
+
+        public bool Value
+        {
+            get
+            {
+                return myflag;
+            }
+            set
+            {
+                myflag = value;
+            }
+        }
+
+        public static implicit operator bool(CprFlagS f)
+            => f.Value;
+        public static implicit operator CprFlagS(bool b)
+            => new CprFlagS(b);
+    }
+
+    namespace Bool
+    {
+        public static class CprBoolExtention
+        {
+            /// <summary>
+            /// boolの値を逆転します。
+            /// </summary>
+            public static bool Change(this bool b)
+            {
+                b = !b;
+                return b;
+            }
+
+            /// <summary>
+            /// trueを代入します。
+            /// </summary>
+            public static bool On(this bool b)
+            {
+                b = true;
+                return true;
+            }
+
+            /// <summary>
+            /// falseを代入します。
+            /// </summary>
+            public static bool Off(this bool b)
+            {
+                b = false;
+                return false;
+            }
+        }
     }
 }
 

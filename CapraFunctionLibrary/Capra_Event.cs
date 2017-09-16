@@ -12,7 +12,7 @@ namespace CapraFunctionLibrary
 
     public delegate void ChangeDataEventHandler<T>(ChangeEventArgs<T> e);
 
-    public class WithTagEventArgs : System.EventArgs
+    public class WithTagEventArgs : EventArgs
     {
         private string tag;
 
@@ -25,10 +25,12 @@ namespace CapraFunctionLibrary
         }
 
         public WithTagEventArgs(string tag)
-            => this.tag = tag;
+        {
+            this.tag = tag;
+        }
     }
 
-    public class ChangeEventArgs<T> : System.EventArgs
+    public class ChangeEventArgs<T> : EventArgs
     {
         private T before;
         private T after;
@@ -64,7 +66,7 @@ namespace CapraFunctionLibrary
         }
     }
 
-    public class CprData<T>
+    public class CprWithEvent<T> : ICloneable
     {
         private T item;
         private string tag;
@@ -73,11 +75,12 @@ namespace CapraFunctionLibrary
         public event SetDataEventHandler SetDataEvent;
         public event ChangeDataEventHandler<T> ChangeDataEvent;
 
-        public CprData(T item, string tag)
+        public CprWithEvent(T item, string tag)
         {
             this.item = item;
             this.tag = tag;
         }
+        public CprWithEvent(){ }
 
         protected virtual void OnGetData(WithTagEventArgs e)
         {
@@ -118,5 +121,8 @@ namespace CapraFunctionLibrary
                 return tag;
             }
         }
+
+        public object Clone()
+            => Cpr314Lib.CprSystem.PassByValue(this);
     }
 }
