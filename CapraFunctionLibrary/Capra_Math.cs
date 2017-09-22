@@ -52,7 +52,7 @@ namespace Cpr314Lib
         /// <param name="seed">Seed値</param>
         /// <returns>値</returns>
         public static double perlin_noise_3D(CprPoint key, int seed)
-            => frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D, 49.038D)) + seed) * 43758.5433D);
+            => frac(Math.Sin(Dot(key, new CprPoint(12.9898D, 78.233D, 49.038D)) + seed) * 43758.5433D);
 
         /// <summary>
         /// 実装したはいいものの、性能は...
@@ -61,7 +61,7 @@ namespace Cpr314Lib
         /// <param name="seed">Seed値</param>
         /// <returns>値</returns>
         public static double perlin_noise_2D(CprPoint key, int seed)
-            => frac(Math.Sin(dot(key, new CprPoint(12.9898D, 78.233D)) + seed) * 43758.5453123D);
+            => frac(Math.Sin(Dot(key, new CprPoint(12.9898D, 78.233D)) + seed) * 43758.5453123D);
 
         /// <summary>
         /// ベクトルの内積を求めます
@@ -69,13 +69,40 @@ namespace Cpr314Lib
         /// <param name="a">ベクトル的な</param>
         /// <param name="b">ベクトル的な</param>
         /// <returns></returns>
-        public static double dot(CprPoint a, CprPoint b)
+        public static double Dot(CprPoint a, CprPoint b)
             => a.x * b.x + a.y * b.y + a.z * b.z;
 
         /// <summary>
         /// まるめ
         /// </summary>
-        static Func<double, double> frac = (value) => (value - Math.Floor(value));
+        private static Func<double, double> frac = (value) => (value - Math.Floor(value));
+
+        /// <summary>
+        /// どれか一つを選択します。
+        /// </summary>
+        /// <param name="rnd">乱数の発生原</param>
+        /// <param name="items">選択されるものです</param>
+        /// <param name="probability">それぞれが選択される確率です</param>
+        /// <returns>選択したもの</returns>
+        public static T RondomGet<T>(Random rnd, T[] items, int[] probability)   
+        {
+            if (!(items.Length != probability.Length || items.Length == 0))
+            {
+                int sum = probability.Sum();
+                if(sum == 0)
+                {
+                    throw new ArgumentException();
+                }
+                int rn = rnd.Next(sum);
+                rn++;
+                for(int i = 0;i < items.Length; i++)
+                {
+                    rn -= probability[i];
+                    if (rn <= 0) return items[i];
+                }
+            }
+            throw new ArgumentException();
+        }
     }
 
 #endif
