@@ -36,12 +36,12 @@ namespace Cpr314Lib
         /// <param name="h">高さ</param>
         /// <returns>Y座標</returns>
         public static double ProjectileMotion_y(double v, double θ, double x, double h)
-            => ProjectileMotion_y(v, θ, x, h, g);
+            => ProjectileMotion_y(v, θ, x, h, G);
 
         /// <summary>
         /// 重力加速度
         /// </summary>
-        public const double g = 9.80665;
+        public const double G = 9.80665;
 
 #if !POINT
 
@@ -84,7 +84,7 @@ namespace Cpr314Lib
         /// <param name="items">選択されるものです</param>
         /// <param name="probability">それぞれが選択される確率です</param>
         /// <returns>選択したもの</returns>
-        public static T RondomGet<T>(Random rnd, T[] items, int[] probability)   
+        public static T RondomGet<T>(Random rnd, T[] items, params int[] probability)   
         {
             if (!(items.Length != probability.Length || items.Length == 0))
             {

@@ -60,6 +60,15 @@ namespace Cpr314Lib
             }
             return clone;
         }
+
+        /// <summary>
+        /// インスタンスを詳細コピーします。
+        /// </summary>
+        /// <typeparam name="T">クラスの種類</typeparam>
+        /// <param name="params">コピーするインスタンス</param>
+        /// <returns>詳細コピーされたインスタンス</returns>
+        public static T ObjectCopy<T>(this T @params)
+            => (T)PassByValue(@params);
     }
 
 #endif
