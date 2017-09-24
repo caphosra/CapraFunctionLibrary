@@ -83,7 +83,7 @@ namespace Cpr314Lib
         /// <param name="str1">処理する文字列</param>
         /// <param name="str2">この文字より前が抜き出されます。</param>
         /// <returns>処理後の文字列</returns>
-        public static string Before(string str1, string str2)
+        public static string Before(this string str1, string str2)
             => str1.Remove(str1.IndexOf(str2));
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Cpr314Lib
         /// </summary>
         /// <param name="str">処理する文字列</param>
         /// <returns>処理後の文字列の配列</returns>
-        public static string[] Separate(string str)
+        public static string[] Separate(this string str)
             => str.Split(' ');
     }
 
