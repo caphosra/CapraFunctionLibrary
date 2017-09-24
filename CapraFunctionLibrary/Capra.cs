@@ -64,30 +64,6 @@ namespace Cpr314Lib
 
 #endif
 
-#if !STRING
-
-    public static class CprString
-    {
-        /// <summary>
-        /// 指定した単語より前の文字列を出力する。
-        /// </summary>
-        /// <param name="str1">処理する文字列</param>
-        /// <param name="str2">この文字より前が抜き出されます。</param>
-        /// <returns>処理後の文字列</returns>
-        public static string Before(this string str1, string str2)
-            => str1.Remove(str1.IndexOf(str2));
-
-        /// <summary>
-        /// 空白区切りされた文字列を文字列の配列に変換する。
-        /// </summary>
-        /// <param name="str">処理する文字列</param>
-        /// <returns>処理後の文字列の配列</returns>
-        public static string[] Separate(this string str)
-            => str.Split(' ');
-    }
-
-#endif
-
 #if !POINT
 
     public struct CprPoint
