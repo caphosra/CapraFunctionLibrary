@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Cpr314Lib
 {
@@ -42,12 +43,12 @@ namespace Cpr314Lib
         }
 
         /// <summary>
-        /// インスタンスを詳細コピーします。
+        /// インスタンスを詳細コピーします。戻り値はobjectです。
         /// </summary>
         /// <typeparam name="T">クラスの種類</typeparam>
         /// <param name="t">インスタンス</param>
         /// <returns></returns>
-        public static object PassByValue<T>(T t)
+        public static object PassByValueInObject<T>(T t) where T : class
         {
             object clone = null;
             using (var stream = new System.IO.MemoryStream())
@@ -62,13 +63,33 @@ namespace Cpr314Lib
         }
 
         /// <summary>
+        /// インスタンスを詳細コピーします。戻り値は渡されたクラスです。
+        /// </summary>
+        /// <typeparam name="T">クラスの種類</typeparam>
+        /// <param name="t">インスタンス</param>
+        /// <returns></returns>
+        public static T PassByValueInClass<T>(T t) where T : class
+        {
+            object clone = null;
+            using (var stream = new System.IO.MemoryStream())
+            {
+                System.Xml.Serialization.XmlSerializer serializer =
+                    new System.Xml.Serialization.XmlSerializer(typeof(T));
+                serializer.Serialize(stream, t);
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                clone = serializer.Deserialize(stream);
+            }
+            return (T)clone;
+        }
+
+        /// <summary>
         /// インスタンスを詳細コピーします。
         /// </summary>
         /// <typeparam name="T">クラスの種類</typeparam>
         /// <param name="params">コピーするインスタンス</param>
         /// <returns>詳細コピーされたインスタンス</returns>
-        public static T ObjectCopy<T>(this T @params)
-            => (T)PassByValue(@params);
+        public static T PassByValue<T>(this T param) where T : class
+            => PassByValueInClass(param);
     }
 
 #endif
@@ -101,25 +122,34 @@ namespace Cpr314Lib
 
     public struct CprPoint
     {
-        public double x;
-        public double y;
-        public double z;
+        public double X
+        {
+            get; set;
+        }
+        public double Y
+        {
+            get; set;
+        }
+        public double Z
+        {
+            get; set;
+        }
 
         public CprPoint(double x = 0, double y = 0)
         {
-            this.x = x;
-            this.y = y;
-            this.z = 0D;
+            X = x;
+            Y = y;
+            Z = 0D;
         }
         public CprPoint(double x = 0, double y = 0, double z = 0)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public new string ToString()
-            => "X : " + x.ToString() + " / Y : " + y.ToString() + " / Z : " + z.ToString();
+            => "X : " + X.ToString() + " / Y : " + Y.ToString() + " / Z : " + Z.ToString();
         public string ToString(byte dimensions)
         {
             switch (dimensions)
@@ -127,9 +157,9 @@ namespace Cpr314Lib
                 case 0:
                     return "0";
                 case 1:
-                    return "X : " + x.ToString();
+                    return "X : " + X.ToString();
                 case 2:
-                    return "X : " + x.ToString() + " / Y : " + y.ToString();
+                    return "X : " + X.ToString() + " / Y : " + Y.ToString();
                 case 3:
                     return ToString();
                 default:
@@ -151,6 +181,15 @@ namespace Cpr314Lib
                 }
             }
         }
+        public static explicit operator Point(CprPoint cpr)
+            => new Point((int)cpr.X, (int)cpr.Y);
+        public static explicit operator CprPoint(Point point)
+            => new CprPoint(point.X, point.Y);
+
+        public static CprPoint operator +(CprPoint cpr1, CprPoint cpr2)
+            => new CprPoint(cpr1.X + cpr2.X, cpr1.Y + cpr2.Y, cpr1.Z + cpr2.Z);
+        public static CprPoint operator -(CprPoint cpr1, CprPoint cpr2)
+            => new CprPoint(cpr1.X - cpr2.X, cpr1.Y - cpr2.Y, cpr1.Z - cpr2.Z);
     }
 
 #endif
