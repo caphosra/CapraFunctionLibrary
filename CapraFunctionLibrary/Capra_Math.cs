@@ -70,7 +70,7 @@ namespace Cpr314Lib
         /// <param name="b">ベクトル的な</param>
         /// <returns></returns>
         public static double Dot(CprPoint a, CprPoint b)
-            => a.x * b.x + a.y * b.y + a.z * b.z;
+            => a.X * b.X + a.Y * b.Y + a.Z * b.Z;
 
         /// <summary>
         /// まるめ
