@@ -16,14 +16,6 @@ namespace Cpr314Lib
     public static class CprSystem
     {
         /// <summary>
-        /// Int型をBoolean型に変換する関数。
-        /// </summary>
-        /// <param name="value">Int型の値</param>
-        /// <returns>Boolean型に変換された値</returns>
-        public static bool BoolInt(int value)
-            => (value != 0);
-
-        /// <summary>
         /// Falseになった時、例外を返します。
         /// </summary>
         /// <param name="b">Boolean型の値</param>
@@ -82,6 +74,25 @@ namespace Cpr314Lib
             return (T)clone;
         }
 
+        
+    }
+
+#endif
+
+    public static class CprExtension
+    {
+        /// <summary>
+        /// boolをintに変換します。
+        /// </summary>
+        public static int ToInt(this bool b)
+            => b ? 1 : 0; 
+
+        /// <summary>
+        /// intをboolに変換します。
+        /// </summary>
+        public static bool ToBool(this int i)
+            => (i != 0); 
+
         /// <summary>
         /// インスタンスを詳細コピーします。
         /// </summary>
@@ -89,15 +100,8 @@ namespace Cpr314Lib
         /// <param name="params">コピーするインスタンス</param>
         /// <returns>詳細コピーされたインスタンス</returns>
         public static T PassByValue<T>(this T param) where T : class
-            => PassByValueInClass(param);
-    }
+            => CprSystem.PassByValueInClass(param);
 
-#endif
-
-#if !STRING
-
-    public static class CprString
-    {
         /// <summary>
         /// 指定した単語より前の文字列を出力する。
         /// </summary>
@@ -115,8 +119,6 @@ namespace Cpr314Lib
         public static string[] Separate(this string str)
             => str.Split(' ');
     }
-
-#endif
 
 #if !POINT
 
