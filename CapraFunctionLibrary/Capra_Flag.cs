@@ -212,39 +212,6 @@ namespace Cpr314Lib
         public static implicit operator CprFlagS(bool b)
             => new CprFlagS(b);
     }
-
-    namespace Bool
-    {
-        public static class CprBoolExtention
-        {
-            /// <summary>
-            /// boolの値を逆転します。
-            /// </summary>
-            public static bool Change(this bool b)
-            {
-                b = !b;
-                return b;
-            }
-
-            /// <summary>
-            /// trueを代入します。
-            /// </summary>
-            public static bool On(this bool b)
-            {
-                b = true;
-                return true;
-            }
-
-            /// <summary>
-            /// falseを代入します。
-            /// </summary>
-            public static bool Off(this bool b)
-            {
-                b = false;
-                return false;
-            }
-        }
-    }
 }
 
 #endif

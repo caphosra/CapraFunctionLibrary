@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // アセンブリに関する一般情報は以下の属性セットをとおして制御されます。
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
-[assembly: AssemblyTitle("CapraFunctionLibrary 2017")]
+[assembly: AssemblyTitle("CapraFunctionLibrary v2.2 β")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("capra314cabra")]
@@ -15,4 +15,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: Guid("d2319dd1-f2db-4d3b-b10a-abc95d2507ae")]
-[assembly: AssemblyVersion("2.1.0.*")]
+[assembly: AssemblyVersion("2.2.0.*")]

@@ -9,13 +9,8 @@ namespace Cpr314Lib
     {
         public class CprMuseum<T>
         {
-#if DEBUG
-            public List<MuseumItem<T>> Items =
-                new List<MuseumItem<T>>();
-#else
             private List<MuseumItem<T>> Items =
                 new List<MuseumItem<T>>();
-#endif
 
             /// <summary>
             /// Itemを増やします

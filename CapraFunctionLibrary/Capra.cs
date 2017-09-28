@@ -85,7 +85,34 @@ namespace Cpr314Lib
         /// boolをintに変換します。
         /// </summary>
         public static int ToInt(this bool b)
-            => b ? 1 : 0; 
+            => b ? 1 : 0;
+
+        /// <summary>
+        /// boolの値を逆転します。
+        /// </summary>
+        public static bool Change(this bool b)
+        {
+            b = !b;
+            return b;
+        }
+
+        /// <summary>
+        /// trueを代入します。
+        /// </summary>
+        public static bool On(this bool b)
+        {
+            b = true;
+            return true;
+        }
+
+        /// <summary>
+        /// falseを代入します。
+        /// </summary>
+        public static bool Off(this bool b)
+        {
+            b = false;
+            return false;
+        }
 
         /// <summary>
         /// intをboolに変換します。
